@@ -17,13 +17,13 @@ const createUserSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Please enter a valid email'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
-  role: z.enum(['admin', 'user']).default('user'),
+  role: z.enum(['admin', 'user']),
 });
 
 type CreateUserFormValues = z.infer<typeof createUserSchema>;
 
 export function UserListPage() {
-  const [page, setPage] = useState(PAGINATION.DEFAULT_PAGE);
+  const [page, setPage] = useState<number>(PAGINATION.DEFAULT_PAGE);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
